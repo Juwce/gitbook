@@ -105,11 +105,11 @@ void ExampleActor::PostEditMove(bool bFinished)
 
 	if (bFinished)
 	{
-		// released move input
+		// finished moving (e.g. let go of mouse click)
 	}
 	else
 	{
-		// move input still active (e.g. user dragging mouse)
+		// move in progress (e.g. user dragging mouse)
 	}
 }
 #endif
