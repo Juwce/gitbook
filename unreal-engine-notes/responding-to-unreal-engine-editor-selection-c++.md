@@ -24,8 +24,8 @@ In the Actor's constructor, bind the selection events like this:
 AExampleActor::AExampleActor()
 {
     #if WITH_EDITOR
-    // Broadcast whenever the actor selection changes
-    //   (viewport or world outliner)
+    // Broadcast whenever the editor selection changes (viewport or world 
+    // outliner)
     USelection::SelectionChangedEvent.AddUObject(this, 
                                          &ExampleActor::OnSelectionChanged);
     #endif
@@ -62,8 +62,8 @@ void ATPickupSpawnVolume::OnSelectionChanged(UObject* NewSelection)
 	for (ExampleActor* SelectedExampleActor : SelectedExampleActors)
 	{
 		// If our actor is in the selection and was not previously
-		// selected, then this is the event when the actor was
-		// first selected
+		// selected, then this selection change marks the actor
+		// being selected
 		if (SelectedExampleActor == this && !bSelectedInEditor)
 		{
 			// Respond to this actor being selected
@@ -71,7 +71,8 @@ void ATPickupSpawnVolume::OnSelectionChanged(UObject* NewSelection)
 		}
 	}
 
-	// If our actor
+	// If our record shows our actor is selected, but IsSelected() is false,
+	// this selection change marks the actor being deselected
 	if (bSelectedInEditor && !IsSelected())
 	{
 		// Respond to this actor being deselected
