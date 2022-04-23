@@ -27,7 +27,7 @@ AExampleActor::AExampleActor()
     // Broadcast whenever the editor selection changes (viewport or world 
     // outliner)
     USelection::SelectionChangedEvent.AddUObject(this, 
-                                         &ExampleActor::OnSelectionChanged);
+                                         &AExampleActor::OnSelectionChanged);
     #endif
 }
 ```
@@ -46,20 +46,20 @@ In `ExampleActor.h`
 In `ExampleActor.cpp`
 
 ```cpp
-void ATPickupSpawnVolume::OnSelectionChanged(UObject* NewSelection)
+void AExampleActor::OnSelectionChanged(UObject* NewSelection)
 {
-	TArray<ExampleActor*> SelectedExampleActors;
+	TArray<AExampleActor*> SelectedExampleActors;
 	
-	// Get ExampleActors from the selection
+	// Get AExampleActors from the selection
 	USelection* Selection = Cast<USelection>(NewSelection);
 	if (Selection != nullptr)
 	{
-		Selection->GetSelectedObjects<ExampleActor>(
+		Selection->GetSelectedObjects<AExampleActor>(
 						SelectedExampleActors);
 	}
 	
 	// Search the selection for this actor
-	for (ExampleActor* SelectedExampleActor : SelectedExampleActors)
+	for (AExampleActor* SelectedExampleActor : SelectedExampleActors)
 	{
 		// If our actor is in the selection and was not previously
 		// selected, then this selection change marks the actor
@@ -100,7 +100,7 @@ In `ExampleActor.cpp`
 
 ```cpp
 #if WITH_EDITOR
-void ExampleActor::PostEditMove(bool bFinished)
+void AExampleActor::PostEditMove(bool bFinished)
 {
 	Super::PostEditMove(bFinished);
 
