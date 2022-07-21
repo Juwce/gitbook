@@ -77,6 +77,10 @@ FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 
 ## Projectile Classes
 
+{% hint style="info" %}
+All functionality for projectiles are implemented in C++. Assets and gameplay tuning parameters (damage, speed, etc.) are assigned in Unreal's Blueprint UI.
+{% endhint %}
+
 ### Projectile Base Class
 
 A projectile base class `TProjectileBase` handles the basic setup of a projectile.
@@ -95,6 +99,8 @@ A projectile base class `TProjectileBase` handles the basic setup of a projectil
 
 ### Magic Projectile
 
+![This magic projectile applies the 'burning' effect to actors it hits.](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
+
 Magic projectiles are the most basic attack a player can perform, dealing damage, applying debuffs, and more. They extend the projectile base class with the following functionality:
 
 Gameplay:
@@ -110,6 +116,8 @@ Cosmetic:
 **See it on GitHub:** [TProjectile\_Magic.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp) // [TProjectile\_Magic.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectile\_Magic.h)
 
 ### Dash Projectile
+
+![Teleports player to point of explosion (either first blocking object hit, or after a set duration expires)](../../.gitbook/assets/2d6c3034e1bd1af4623d15778fb97fe7.gif)
 
 Dash projectiles fly forward, exploding on impact or after a set duration expires, whichever comes first. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
 
