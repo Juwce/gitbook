@@ -99,7 +99,7 @@ A projectile base class `TProjectileBase` handles the basic setup of a projectil
 
 ### Magic Projectile
 
-![This magic projectile applies the 'burning' effect to actors it hits.](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
+![This magic projectile deals an initial burst of damage, then applies the 'burning' effect to actors it hits.](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
 
 Magic projectiles are the most basic attack a player can perform, dealing damage, applying debuffs, and more. They extend the projectile base class with the following functionality:
 
