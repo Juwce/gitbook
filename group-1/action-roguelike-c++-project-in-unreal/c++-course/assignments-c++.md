@@ -71,6 +71,8 @@
 
 #### Assignment 7 - Network Replicated Attributes & Powerups
 
+(All C++, using [Unreal's networking framework](https://www.unrealengine.com/en-US/tech-blog/getting-started-with-unreal-multiplayer-in-cpp))
+
 * Replicate player credits
 * Replicate powerups
   * Synchronize visibility & collision
