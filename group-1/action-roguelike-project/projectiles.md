@@ -66,7 +66,7 @@ Then we perform the trace, setting the target to the first object hit, or `MaxAt
 ```cpp
 FHitResult Hit;
 bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(
-	Hit, CameraLocation, TraceEnd, ObjectQueryParams, CollisionQueryParams);
+	Hit, TraceStart, TraceEnd, ObjectQueryParams, CollisionQueryParams);
 
 FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 ```
