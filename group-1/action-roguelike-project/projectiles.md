@@ -91,7 +91,7 @@ A projectile base class `TProjectileBase` handles the basic setup of a projectil
   * `Explode()` - play cosmetic effects and destroy self. Triggered by `OnActorHit()` by default
 * Contains the basic components shared by all projectiles:
   * `USphereComponent` - Sphere primitive used for collision detection
-  * `UProjectileMovementComponent` - Handle velocity, acceleration, direction, etc.
+  * `UProjectileMovementComponent` - Handle velocity, acceleration, curvature, etc.
   * `UParticleSystemComponent` - Projectile and explosion VFX
   * `UAudioComponent` - Projectile and explosion sounds
 
