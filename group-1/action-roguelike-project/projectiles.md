@@ -1,8 +1,15 @@
-# Action Roguelike (Project)
+---
+cover: ../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif
+coverY: 0
+---
 
-## Projectiles
+# Projectiles
 
-![](../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
+<details>
+
+<summary>Projectile Classes</summary>
+
+
 
 ### Projectile Base Class
 
@@ -40,3 +47,6 @@ Gameplay:
 
 * Teleports player to projectile location on impact, or after a set duration expires
 
+</details>
+
+###

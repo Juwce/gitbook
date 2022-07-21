@@ -5,7 +5,8 @@
 
 ## Group 1
 
-* [Action Roguelike (Project)](group-1/action-roguelike-project.md)
+* [Action Roguelike (Project)](group-1/action-roguelike-project/README.md)
+  * [Projectiles](group-1/action-roguelike-project/projectiles.md)
 * [C++ Course](group-1/c++-course/README.md)
   * [Assignments (C++)](group-1/c++-course/assignments-c++.md)
   * [Key Learnings (C++)](group-1/c++-course/key-learnings-c++.md)
