@@ -73,6 +73,8 @@ FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 
 ### Projectile Base Class
 
+{% embed url="https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectileBase.cpp" %}
+
 A projectile base class `TProjectileBase` handles the basic setup of a projectile.
 
 * Can collide with the environment, exploding upon impact
