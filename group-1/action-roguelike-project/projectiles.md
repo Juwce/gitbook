@@ -78,7 +78,7 @@ FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 ## Projectile Classes
 
 {% hint style="info" %}
-All functionality for projectiles are implemented in C++. Assets and gameplay tuning parameters (damage, speed, etc.) are assigned in Unreal's Blueprint UI.
+Functionality for projectiles are implemented in C++. Unreal's Blueprints / UI is only used to assign assets and fine-tune gameplay parameters (damage values, delays, etc.).
 {% endhint %}
 
 ### Projectile Base Class
