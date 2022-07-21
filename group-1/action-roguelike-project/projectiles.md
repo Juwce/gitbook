@@ -7,13 +7,13 @@ coverY: 0
 
 ### Projectile Targeting
 
-The player's projectiles should fire at the nearest target under the player's reticle. To find this target, we perform a trace from the player camera into the world where the player is looking.
-
 {% hint style="info" %}
-(note const correctness is left out to keep code snippets within the character line limit)
+Note const correctness is left out of smaller code snippets to keep the snippets within the line character limit.
 {% endhint %}
 
-```
+The player's projectiles should fire at the nearest target under the player's reticle. To find this target, we perform a line trace from the player's camera into the world where the player is looking.
+
+```cpp
 FVector TraceStart = CameraComp->GetComponentLocation();
 FVector ControlRotation = InstigatorCharacter->GetControlRotation().Vector();
 FVector TraceEnd = TraceStart + (ControlRotation * MaxAttackTraceDistance);
