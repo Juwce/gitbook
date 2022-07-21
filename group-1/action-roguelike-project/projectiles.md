@@ -73,8 +73,6 @@ FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 
 ### Projectile Base Class
 
-{% embed url="https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectileBase.cpp" %}
-
 A projectile base class `TProjectileBase` handles the basic setup of a projectile.
 
 * Can collide with the environment, exploding upon impact
@@ -86,6 +84,8 @@ A projectile base class `TProjectileBase` handles the basic setup of a projectil
   * `UProjectileMovementComponent` - Handle velocity, acceleration, direction, etc.
   * `UParticleSystemComponent` - Projectile and explosion VFX
   * `UAudioComponent` - Projectile and explosion sounds
+
+**See it on GitHub:** [TProjectileBase.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectileBase.cpp) // [TProjectileBase.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectileBase.h)
 
 ### Magic Projectile
 
@@ -101,6 +101,8 @@ Cosmetic:
 
 * Applies camera shake around impact point
 
+**See it on GitHub:** [TProjectile\_Magic.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp) // [TProjectile\_Magic.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.h)
+
 ### Dash Projectile
 
 Dash projectiles fly forward, exploding on impact or after a set duration expires. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
@@ -108,3 +110,5 @@ Dash projectiles fly forward, exploding on impact or after a set duration expire
 Gameplay:
 
 * Teleports player to projectile location on impact, or after a set duration expires
+
+**See it on GitHub:** [TProjectileBase.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectileBase.cpp) // [TProjectileBase.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectileBase.h)
