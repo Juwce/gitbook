@@ -9,4 +9,5 @@
   * [C++ Course](group-1/action-roguelike-c++-focused-project-in-unreal/c++-course/README.md)
     * [Assignments (C++)](group-1/action-roguelike-c++-focused-project-in-unreal/c++-course/assignments-c++.md)
     * [Key Learnings (C++)](group-1/action-roguelike-c++-focused-project-in-unreal/c++-course/key-learnings-c++.md)
-  * [Projectiles](group-1/action-roguelike-c++-focused-project-in-unreal/projectiles.md)
+  * [Key Components (C++)](group-1/action-roguelike-c++-focused-project-in-unreal/key-components-c++/README.md)
+    * [Projectiles](group-1/action-roguelike-c++-focused-project-in-unreal/key-components-c++/projectiles.md)

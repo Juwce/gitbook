@@ -1,5 +1,5 @@
 ---
-cover: ../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif
+cover: ../../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif
 coverY: 0
 ---
 
@@ -19,7 +19,7 @@ Note that in order to keep the snippets within the line character limit, the cod
 
 Projectiles should fire from the character's hand towards the nearest valid target under the player's reticle. Calculating the projectile's spawn parameters takes some simple 3D math, described below.
 
-![Projectiles should fire from the character's hand to the nearest valid target under player reticle](../../.gitbook/assets/image.png)
+![Projectiles should fire from the character's hand to the nearest valid target under player reticle](../../../.gitbook/assets/image.png)
 
 To aim the projectile in this way, we spawn the projectile at the character's hand, facing in the direction of the target.
 
@@ -99,7 +99,7 @@ A projectile base class `TProjectileBase` handles the basic setup of a projectil
 
 ### Magic Projectile
 
-![This magic projectile deals an initial burst of damage, then applies the 'burning' effect to actors it hits.](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
+![This magic projectile deals an initial burst of damage, then applies the 'burning' effect to actors it hits.](../../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
 
 Magic projectiles are the most basic attack a player can perform, dealing damage, applying debuffs, and more. They extend the projectile base class with the following functionality:
 
@@ -117,7 +117,7 @@ Cosmetic:
 
 ### Dash Projectile
 
-![Teleports player to point of explosion (either first blocking object hit, or after a set duration expires)](../../.gitbook/assets/2d6c3034e1bd1af4623d15778fb97fe7.gif)
+![Teleports player to point of explosion (either first blocking object hit, or after a set duration expires)](../../../.gitbook/assets/2d6c3034e1bd1af4623d15778fb97fe7.gif)
 
 Dash projectiles fly forward, exploding on impact or after a set duration expires, whichever comes first. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
 
