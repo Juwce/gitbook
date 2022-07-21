@@ -101,7 +101,7 @@ Cosmetic:
 
 * Applies camera shake around impact point
 
-**See it on GitHub:** [TProjectile\_Magic.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp) // [TProjectile\_Magic.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.h)
+**See it on GitHub:** [TProjectile\_Magic.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp) // [TProjectile\_Magic.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectile\_Magic.h)
 
 ### Dash Projectile
 
@@ -111,4 +111,4 @@ Gameplay:
 
 * Teleports player to projectile location on impact, or after a set duration expires
 
-**See it on GitHub:** [TProjectileBase.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectileBase.cpp) // [TProjectileBase.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectileBase.h)
+**See it on GitHub:** [TProjectile\_Dash.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Dash.cpp) // [TProjectile\_Dash.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectile\_Dash.h)
