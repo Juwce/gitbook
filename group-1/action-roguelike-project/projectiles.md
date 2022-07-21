@@ -5,23 +5,71 @@ coverY: 0
 
 # Projectiles
 
-### Projectile Targeting
+## Projectile Targeting
 
 {% hint style="info" %}
-Note const correctness is left out of smaller code snippets to keep the snippets within the line character limit.
+Note that in order to keep the snippets within the line character limit, the code snippets below are intentionally written without worrying about const correctness.
 {% endhint %}
 
-The player's projectiles should fire at the nearest target under the player's reticle. To find this target, we perform a line trace from the player's camera into the world where the player is looking.
+The player's projectiles fire from the character's hand towards the nearest target under the player's reticle. Calculating the projectile's spawn parameters takes some simple 3D math, described below.
+
+![Projectiles should fire from the player hand to the nearest valid target under player reticle](../../.gitbook/assets/image.png)
+
+To aim the projectile in this way, we spawn the projectile at the character's hand, facing in the direction of the target.
+
+The `SpawnLocation` is easy to get, since our Character model is set up with a hand socket. We can retrieve the hand location simply by calling `GetSocketLocation()` on the Character mesh with the name of the hand socket.
+
+`ProjectileRotation` is harder to calculate, and will take some work:
+
+#### Calculating the Projectile Rotation
+
+We need to calculate the world space rotation needed to "look at" the target (such that when the projectile moves forward, it is moving directly towards the target). Luckily, Unreal provides a convenient way to get this world space rotation, provided a vector pointing in the direction you want to look at:
+
+`FRotationMatrix::MakeFromX(FVector XAxis).Rotator()`
+
+First, this creates a rotation matrix from an X-Axis, then creates a rotator representation of this matrix. All that's left is to calculate the X-Axis that looks from the hand location, in the direction of the target. We can easily compute that by subtracting the two locations, giving us the final result:&#x20;
+
+`FRotationMatrix::MakeFromX(TargetLocation - HandLocation).Rotator();`
+
+But wait! Something is still missing! We know how to generate the rotation, but still need to calculate the target location...
+
+#### Calculating the Projectile Target
+
+To find this target, we perform a line trace from the player's camera into the world where the player is looking:
 
 ```cpp
 FVector TraceStart = CameraComp->GetComponentLocation();
-FVector ControlRotation = InstigatorCharacter->GetControlRotation().Vector();
-FVector TraceEnd = TraceStart + (ControlRotation * MaxAttackTraceDistance);
+FVector ControlRotation = Character->GetControlRotation().Vector();
+FVector TraceEnd = TraceStart + (ControlRotation * MaxAttackTraceDistance)
 ```
 
+We then configure the line trace to only collide with objects we consider attack targets:
 
+```cpp
+FCollisionObjectQueryParams ObjectQueryParams;
+ObjectQueryParams.AddObjectTypesToQuery(ECollisionChannel::ECC_WorldDynamic);
+ObjectQueryParams.AddObjectTypesToQuery(ECollisionChannel::ECC_WorldStatic);
+ObjectQueryParams.AddObjectTypesToQuery(ECollisionChannel::ECC_Pawn);
+	
+FCollisionQueryParams CollisionQueryParams;
+CollisionQueryParams.AddIgnoredActor(Character);
+```
+
+Then we perform the trace, setting the target to the first object hit, or the trace end if nothing was found (e.g. the player was aiming into the sky).
+
+```cpp
+FHitResult Hit;
+bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(
+	Hit, CameraLocation, TraceEnd, ObjectQueryParams, CollisionQueryParams);
+
+FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
+```
+
+### Final Solution
 
 {% embed url="https://gist.github.com/Juwce/bf9539f8229241762c36e250c09815aa" %}
+
+## Projectile Classes
 
 ### Projectile Base Class
 
