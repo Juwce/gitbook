@@ -19,6 +19,8 @@ Note that in order to keep the snippets within the line character limit, the cod
 
 The player's projectiles fire from the character's hand towards the nearest target under the player's reticle. Calculating the projectile's spawn parameters takes some simple 3D math, described below.
 
+**See full solution on GitHub:** [_TAction_\__ProjectileAttack.cpp_](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) _//_ [_TAction\_ProjectileAttack.h_](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TAction\_ProjectileAttack.h)__
+
 ![Projectiles should fire from the player hand to the nearest valid target under player reticle](../../.gitbook/assets/image.png)
 
 To aim the projectile in this way, we spawn the projectile at the character's hand, facing in the direction of the target.
@@ -49,7 +51,7 @@ FVector ControlRotation = Character->GetControlRotation().Vector();
 FVector TraceEnd = TraceStart + (ControlRotation * MaxAttackTraceDistance)
 ```
 
-We then configure the line trace to only collide with objects we consider attack targets:
+We also need to configure the line trace to only collide with objects we consider attack targets:
 
 ```cpp
 FCollisionObjectQueryParams ObjectQueryParams;
@@ -61,7 +63,7 @@ FCollisionQueryParams CollisionQueryParams;
 CollisionQueryParams.AddIgnoredActor(Character);
 ```
 
-Then we perform the trace, setting the target to the first object hit, or the trace end if nothing was found (e.g. the player was aiming into the sky).
+Then we perform the trace, setting the target to the first object hit, or `MaxAttackTraceDistance` away if nothing was found (e.g. the player was aiming into the sky).
 
 ```cpp
 FHitResult Hit;
