@@ -7,9 +7,9 @@ coverY: 0
 
 Jump to section...
 
-[#projectile-targeting](projectiles.md#projectile-targeting "mention")
+<mark style="background-color:blue;"></mark>[#projectile-targeting](projectiles.md#projectile-targeting "mention")<mark style="background-color:blue;"><mark style="color:blue;"><mark style="color:blue;"></mark>
 
-[#projectile-classes](projectiles.md#projectile-classes "mention")
+<mark style="color:blue;"></mark>[#projectile-classes](projectiles.md#projectile-classes "mention")<mark style="color:blue;background-color:blue;"></mark>
 
 ## Projectile Targeting
 
@@ -18,8 +18,6 @@ Note that in order to keep the snippets within the line character limit, the cod
 {% endhint %}
 
 The player's projectiles fire from the character's hand towards the nearest target under the player's reticle. Calculating the projectile's spawn parameters takes some simple 3D math, described below.
-
-**See full solution on GitHub:** [_TAction_\__ProjectileAttack.cpp_](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) _//_ [_TAction\_ProjectileAttack.h_](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TAction\_ProjectileAttack.h)__
 
 ![Projectiles should fire from the player hand to the nearest valid target under player reticle](../../.gitbook/assets/image.png)
 
@@ -73,9 +71,9 @@ bool bBlockingHit = GetWorld()->LineTraceSingleByObjectType(
 FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 ```
 
-### Final Solution
+### Full Solution
 
-{% embed url="https://gist.github.com/Juwce/bf9539f8229241762c36e250c09815aa" %}
+**See full solution on GitHub:** [TAction\_ProjectileAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) // [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TAction\_ProjectileAttack.h)
 
 ## Projectile Classes
 
@@ -101,9 +99,9 @@ Magic projectiles are the most basic attack a player can perform, dealing damage
 
 Gameplay:
 
-* Deals damage on impact
-* Can apply buffs/debuffs on impact
-* Can be parried / reflected
+* Deals damage upon overlap (if overlapped object implements health)
+* Can apply buffs/debuffs on overlap (if overlapped object implements actions)
+* Can be parried / reflected (if overlapped object has parry tag)
 
 Cosmetic:
 
@@ -113,10 +111,11 @@ Cosmetic:
 
 ### Dash Projectile
 
-Dash projectiles fly forward, exploding on impact or after a set duration expires. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
+Dash projectiles fly forward, exploding on impact or after a set duration expires, whichever comes first. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
 
 Gameplay:
 
-* Teleports player to projectile location on impact, or after a set duration expires
+* Explodes on impact or after a set duration, teleporting player to impact location after a short delay
+* Configurable delay between spawn and explosion, and explosion and teleport
 
 **See it on GitHub:** [TProjectile\_Dash.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Dash.cpp) // [TProjectile\_Dash.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TProjectile\_Dash.h)
