@@ -5,7 +5,7 @@ coverY: 0
 
 # Projectiles
 
-#### Click to Jump To...
+Jump to section...
 
 [#projectile-targeting](projectiles.md#projectile-targeting "mention")
 
