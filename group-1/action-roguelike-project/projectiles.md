@@ -5,11 +5,23 @@ coverY: 0
 
 # Projectiles
 
-<details>
+### Projectile Targeting
 
-<summary>Projectile Classes</summary>
+The player's projectiles should fire at the nearest target under the player's reticle. To find this target, we perform a trace from the player camera into the world where the player is looking.
+
+{% hint style="info" %}
+(note const correctness is left out to keep code snippets within the character line limit)
+{% endhint %}
+
+```
+FVector TraceStart = CameraComp->GetComponentLocation();
+FVector ControlRotation = InstigatorCharacter->GetControlRotation().Vector();
+FVector TraceEnd = TraceStart + (ControlRotation * MaxAttackTraceDistance);
+```
 
 
+
+{% embed url="https://gist.github.com/Juwce/bf9539f8229241762c36e250c09815aa" %}
 
 ### Projectile Base Class
 
@@ -46,7 +58,3 @@ Dash projectiles fly forward, exploding on impact or after a set duration expire
 Gameplay:
 
 * Teleports player to projectile location on impact, or after a set duration expires
-
-</details>
-
-###
