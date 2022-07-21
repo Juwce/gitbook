@@ -5,6 +5,12 @@ coverY: 0
 
 # Projectiles
 
+#### Click to Jump To...
+
+[#projectile-targeting](projectiles.md#projectile-targeting "mention")
+
+[#projectile-classes](projectiles.md#projectile-classes "mention")
+
 ## Projectile Targeting
 
 {% hint style="info" %}
