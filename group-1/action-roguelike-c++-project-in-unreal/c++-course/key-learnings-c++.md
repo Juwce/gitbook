@@ -53,19 +53,19 @@
       * PawnSensing
       * NavMeshes
 
-**UI**
+**UI (C++ & UMG)**
 
 * Manage UI lifecycle in C++
 * Pass data from application to UI from C++
 * In-world widgets (floating damage text, health bars, etc.)
 * Player HUD widgets (health bar, game clock, etc.)
 
-**Unreal's Gameplay Framework**
+**Unreal's Gameplay Framework (C++)**
 
 * Built understanding of lifetime of Unreal's core framework - GameMode, Controller, Character, GameState, PlayerState, etc.
 * Managing UI, etc. on player death and respawn
 
-**Action System (C++)**
+**C++ Action Framework**
 
 * Key goals:
   * Code separation
