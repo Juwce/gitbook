@@ -1,4 +1,4 @@
-# About
+# About Me
 
 <img src=".gitbook/assets/me.jpg" alt="" data-size="original">&#x20;
 
@@ -12,7 +12,7 @@ Resume (Game Programmer-focus)
 
 [Projects](broken-reference)
 
-[Reading List](about/reading-list.md)
+[Reading List](about-me/reading-list.md)
 
 #### **Why Switch Careers to Games?**
 

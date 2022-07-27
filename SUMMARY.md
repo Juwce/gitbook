@@ -1,7 +1,7 @@
 # Table of contents
 
-* [About](README.md)
-  * [Reading List](about/reading-list.md)
+* [About Me](README.md)
+  * [Reading List](about-me/reading-list.md)
 * [Unreal Engine Notes](<README (1).md>)
   * [Responding to Unreal Engine Editor Selection (C++)](unreal-engine-notes/responding-to-unreal-engine-editor-selection-c++.md)
 
