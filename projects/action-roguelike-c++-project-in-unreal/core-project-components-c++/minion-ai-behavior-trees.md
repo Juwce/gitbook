@@ -40,7 +40,7 @@ if (ensureMsgf(BehaviorTree, TEXT("BehaviorTree is nullptr! Please assign "
 
 3\. Create a Blueprint with your new AI Controller class and assign your behavior tree of choice to it
 
-4\. Assign your new AI Controller Class to your AI Pawn.
+4\. Assign your new AI Controller Class to your AI Character or Pawn.
 
 5\. If you plan on spawning your AI minion and want AI to active immediately, set the following in your AI Character class constructor:
 
