@@ -1,7 +1,3 @@
----
-layout: editorial
----
-
 # About
 
 <img src=".gitbook/assets/me.jpg" alt="" data-size="original">&#x20;
