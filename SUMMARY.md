@@ -13,5 +13,6 @@
     * [Key Learnings (C++)](group-1/action-roguelike-c++-project-in-unreal/c++-course/key-learnings-c++.md)
     * [Assignments (C++)](group-1/action-roguelike-c++-project-in-unreal/c++-course/assignments-c++.md)
   * [Core Project Components (C++)](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/README.md)
+    * [Networked Multiplayer](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md)
     * [Minion AI (Behavior Trees)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md)
     * [Projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)

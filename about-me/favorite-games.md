@@ -20,11 +20,11 @@
 
 ### Multiplayer Games (Competitive)
 
-* Call of Duty (Modern Warfare 2020, Cold War, Vanguard)
-  * I picked Call of Duty back up after a several year drought with Modern Warfare 2020 and have been loving it ever since. The game _feels_ so good to play. For such a fast-paced game I find it oddly relaxing, and this has been my go-to take a break and wind-down game for a couple of years.
+* Call of Duty (Modern Warfare 2019, Cold War, Vanguard)
+  * I picked Call of Duty back up after a several year drought with Modern Warfare 2019 and have been loving it ever since. The game _feels_ so good to play. For such a fast-paced game I find it oddly relaxing, and this has been my go-to take a break and wind-down game for a couple of years.
   * Cross play is really nice for switching between convenient and relaxed couch gaming on console and active and tight mouse and keyboard gaming on PC.
   * Zombies: Outbreak was the single best thing to ever happen to zombies.
-  * While I burned out on Vanguard initially (guns were great, but the 24/7 maps Das Haus and Shipment didn't have the same endless fun-factor that Shoot House and Nuketown had for me in MW 2020 and Cold War respectively), Vanguard's arms race mode brought it back up to Modern Warfare levels of fun for me and I now play it regularly just for that mode. I love the high health pools, long range battles, and how balanced it generally feels. I've been having a lot of fun revisiting all the weapons to make them effective with higher health pools and at longer ranges too.
+  * While I burned out on Vanguard initially (guns were great, but the 24/7 maps Das Haus and Shipment didn't have the same endless fun-factor that Shoot House and Nuketown had for me in MW 2019 and Cold War respectively), Vanguard's arms race mode brought it back up to Modern Warfare levels of fun for me and I now play it regularly just for that mode. I love the high health pools, long range battles, and how balanced it generally feels. I've been having a lot of fun revisiting all the weapons to make them effective with higher health pools and at longer ranges too.
 * Overwatch
   * Similar to CoD this game feels _great_ to play mechanically.
   * It's pretty. A "nice place to be in".
