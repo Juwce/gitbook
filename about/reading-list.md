@@ -7,7 +7,7 @@
 _The Art of Game Design_ by Jesse Schell - 65% complete (374 / 578 pages)
 
 * "The" book for getting into designing games (of any kind, not just video games). It covers everything from the core psychology that makes us like games, to balancing them, to various structures for designing stories, characters, puzzles, and so much more. One of my favorite things about this book how it is structured as a series of "lenses" to look at your game from. It acknowledges that many of the topics it covers are far from a science, and nor is designing a game. Rather, great games are created through iteration and repeatedly looking at your game through a series of "lenses" (questions and perspectives) to uncover the problems. And playtesting, if you do nothing else, make sure you playtest!
-* This is a (well written) textbook that I have reading through with care and taking lots of notes as I go.
+* I have been treating this book a bit like a college textbook, going through each chapter with care and taking lots of notes as I go.
 
 #### In the Reading Queue:
 

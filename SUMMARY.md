@@ -7,9 +7,9 @@
 
 ## Projects
 
-* [Action Roguelike (C++ Project in Unreal)](projects/action-roguelike-c++-project-in-unreal/README.md)
-  * [C++ Course Overview](projects/action-roguelike-c++-project-in-unreal/c++-course/README.md)
-    * [Key Learnings (C++)](projects/action-roguelike-c++-project-in-unreal/c++-course/key-learnings-c++.md)
-    * [Assignments (C++)](projects/action-roguelike-c++-project-in-unreal/c++-course/assignments-c++.md)
-  * [Core Project Components (C++)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/README.md)
-    * [Projectiles](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)
+* [Action Roguelike (C++ Project in Unreal)](group-1/action-roguelike-c++-project-in-unreal/README.md)
+  * [C++ Course Overview](group-1/action-roguelike-c++-project-in-unreal/c++-course/README.md)
+    * [Key Learnings (C++)](group-1/action-roguelike-c++-project-in-unreal/c++-course/key-learnings-c++.md)
+    * [Assignments (C++)](group-1/action-roguelike-c++-project-in-unreal/c++-course/assignments-c++.md)
+  * [Core Project Components (C++)](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/README.md)
+    * [Projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)
