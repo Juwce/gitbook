@@ -1,4 +1,4 @@
-# Action Roguelike (C++ Focused Project in Unreal)
+# Action Roguelike (C++ Project in Unreal)
 
 ![](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
 

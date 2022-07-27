@@ -1,2 +1,2 @@
-# Key Components (C++)
+# Core Project Components (C++)
 
