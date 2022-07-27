@@ -9,32 +9,14 @@
   * I've been playing it forever, but MH: World absolutely blew me away.
 * Souls Series (Dark Souls 1 and 3, Elden Ring)
 * Nier Automata
-  * I get bored with single player, story driven RPGs very easily. Most don't last me more than a couple hours before I give up. Stories in modern games just don't hit me like I remember games did as a kid and end up feeling in the way of the gameplay. I kept hearing about this game, to the point where I decided to give it a shot and... this became one of my favorite games of all time. The story is expertly crafted (and a bit out there I'll admit) and has twist after twist that you genuinely won't see coming. One of my favorite things about this game was how the story twists had just as signicant gameplay consequences, totally changing the core mechanics of the game in surprising ways that remained incredibly fun to match major story changes.
+  * I get bored with single player, story driven RPGs very easily. Most don't last me more than a couple hours before I give up. Stories in modern games just don't hit me like I remember games did as a kid and end up feeling in the way of the gameplay. I kept hearing about this game, to the point where I decided to give it a shot and... this became one of my favorite games of all time. The story is expertly crafted (and a bit out there I'll admit) and has twist after twist that you genuinely won't see coming. One of my favorite things about this game was how the story twists had just as significant gameplay consequences, totally changing the core mechanics of the game in surprising ways that remained incredibly fun to match major story changes.
 * Ratchet and Clank: A Rift Apart
   * World's first playable Pixar movie.
 * Assassin's Creed Odyssey
   * I played this one on a free trial just to "see what Assassin's Creed was up to these days" after being disinterested in the series for a while (AC: Brotherhood was the last one I played at this point). Fifteen minutes in and I was hooked. There's something about the colorful Mediterranean, goofy and way overacted story, and simple but satisfying combat and exploration here that kept me hooked from start to finish on this one.
   * AC: Origins and Valhalla, while having the same basic game structure, didn't capture me in the same way.
 * Slay the Spire
-  * This game is to me what Solitare is to some of my relatives. Endlessly replayable and doesn't require much brain power. Perfect for when you're feeling burnt out and need a mental break, or need to kill time in a public setting without getting sucked into a game.
-
-### Single Player Games
-
-These games hold a special place in my heart
-
-* Oblivion made me want to make games. The fact that these games are _still_ the only fully realized immersive RPG-sim worlds in gaming is one of my core motivations for learning game development. I want more.
-* Monster Hunter Series
-  * I've been playing it forever, but MH: World absolutely blew me away.
-* Souls Series (Dark Souls 1 and 3, Elden Ring)
-* Nier Automata
-  * I get bored with single player, story driven RPGs very easily. Most don't last me more than a couple hours before I give up. Stories in modern games just don't hit me like I remember games did as a kid. I kept hearing about this game, to the point where I decided to give it a shot and... this became one of my favorite games of all time. The story is expertly crafted (and a bit out there, I'll admit) and has twist after twist that you won't see coming. One of my favorite things about this game was how the story twists were reflected in gameplay, totally changing the core mechanics of the game in surprising ways that "just worked" to match major story beats.
-* Ratchet and Clank: A Rift Apart
-  * World's first playable Pixar movie.
-* Assassin's Creed Odyssey
-  * I played this one on a free trial just to "see what Assassin's Creed was up to these days" after being disinterested in the series for a while (AC: Brotherhood was the last one I played at this point). Fifteen minutes in and I was hooked. There's something about the colorful Mediterranean, goofy and way overacted story, and simple but satisfying combat and exploration here that kept me hooked from start to finish on this one.
-  * AC: Origins and Valhalla, while having the same basic game structure, didn't capture me in the same way.
-* Slay the Spire
-  * This game is to me what Solitare is to some of my relatives. Endlessly replayable and doesn't require much brain power. Perfect for when you're feeling burnt out and need a mental break, or need to kill time in a public setting without getting sucked into a game.
+  * This game is to me what Solitaire is to some of my relatives. Endlessly replayable and doesn't require much brain power. Perfect for when you're feeling burnt out and need a mental break, or need to kill time in a public setting without getting sucked into a game.
 
 ### Multiplayer Games (Competitive)
 
