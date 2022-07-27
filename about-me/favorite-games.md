@@ -1,6 +1,6 @@
 # Favorite Games
 
-## Single Player Games
+### Single Player Games
 
 * Bethesda Softworks games (Skyrim, Oblivion, Fallout 3, and Fallout New Vegas)
   * These games hold a special place in my heart
