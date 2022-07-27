@@ -13,7 +13,7 @@ Code and assets for this project's AI implementation can be found on GitHub. Ind
 * AI Classes: [Private / .cpp](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI) || [Public / .h](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Public/AI)
 * Behavior Tree, EQS, another other Unreal AI assets: [AI Assets](https://github.com/Juwce/ActionRoguelike/tree/main/Content/ActionRoguelike/AI)
 
-## Setup:
+## AI Setup
 
 Behavior Trees run on an AI Controller, which assumes control of an AI Character or Pawn. Set up both as follows:
 
