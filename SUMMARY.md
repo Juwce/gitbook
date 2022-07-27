@@ -1,6 +1,7 @@
 # Table of contents
 
-* [Unreal Engine Notes](README.md)
+* [About](README.md)
+* [Unreal Engine Notes](<README (1).md>)
   * [Responding to Unreal Engine Editor Selection (C++)](unreal-engine-notes/responding-to-unreal-engine-editor-selection-c++.md)
 
 ## Group 1
@@ -11,7 +12,3 @@
     * [Assignments (C++)](group-1/action-roguelike-c++-project-in-unreal/c++-course/assignments-c++.md)
   * [Core Project Components (C++)](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/README.md)
     * [Projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)
-
-***
-
-* [About Me](about-me.md)
