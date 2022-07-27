@@ -107,7 +107,7 @@ Unreal's behavior trees provide a plethora of [built-in nodes](https://docs.unre
 
 I configured and used the following built-in Unreal nodes:
 
-**BT Tasks**
+#### **BT Tasks**
 
 * Finding a random location on the navmesh closer to the target actor and line of site checks are performed by Unreal's [Environmental Query System](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/), configured with Blueprints (Query in a donut shape around the player, projecting locations onto the navmesh and checking for line of site. Assign each valid location a weight based on distance to the player \[closer is better] and pick the one with the highest score).
 * The movement along the navmesh to the target location also used Unreal's built-in "Move To" task.
