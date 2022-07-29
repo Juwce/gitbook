@@ -196,9 +196,9 @@ void UTAction::OnRep_RepData()
 {% endtab %}
 {% endtabs %}
 
-## Frame By Frame:
+## Frame By Frame Example:
 
-In this section I will break down the network logic for this attack sequence frame-by-frame:
+In this section I will break down the network logic for this networked attack sequence frame-by-frame:
 
 ![The player's attack replicates over the network.](<../../../.gitbook/assets/networked projectiles and health 2.gif>)
 
