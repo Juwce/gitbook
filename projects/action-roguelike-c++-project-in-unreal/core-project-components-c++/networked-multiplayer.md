@@ -89,6 +89,16 @@ bool UTActionComponent::ReplicateSubobjects(
 ```
 {% endcode %}
 
+
+{% endtab %}
+
+{% tab title="Diagram" %}
+![Flow diagram for 1 & 2](../../../.gitbook/assets/image.png)
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Code" %}
 3\. Anyone can start an action. If an action is started by the client, also start that action on the server:
 
 {% code title="ActionComponent.cpp" %}
@@ -164,15 +174,9 @@ void UTAction::OnRep_RepData()
 {% endtab %}
 
 {% tab title="Diagram" %}
-![Flow diagram for 1 & 2](<../../../.gitbook/assets/image (10).png>)
-
-![Flow diagram for 3 & 4](../../../.gitbook/assets/image.png)
+![](<../../../.gitbook/assets/image (2).png>)
 {% endtab %}
 {% endtabs %}
-
-![Flow diagram for 1 & 2.](<../../../.gitbook/assets/image (10).png>)
-
-
 
 ## Networked Action Example, Frame By Frame
 
