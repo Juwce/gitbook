@@ -209,53 +209,97 @@ This section breaks down the network logic for this networked attack sequence fr
 
 ### 1. Client starts an Attack
 
+**Frame**:
+
 ![](<../../../.gitbook/assets/image (1) (2).png>)
 
-In this frame we see the client's character starting an attack (in the form of playing a wind-up animation and spawning particle VFX at the hand). The attack is replicated on the server (note this was captured on a local network, both actions wouldn't necessarily be seen on the same frame in a higher latency environment).
+**What's happening?**
 
-**Sequence Diagram**
+* The client pressed their attack key, starting the character's [attack action](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) which in turn runs the cosmetic parts of the attack locally (spell cast animation and particle effects at the hand).
+* The client makes a **reliable** RPC (TCP) to the server to also start the attack action.&#x20;
+* The server then runs the attack action, playing cosmetic effects and (server only) also setting the timer to spawn the attack projectile.
+* The server replicates the attack action's `IsRunning` property, triggering a RepNotify on other clients that would in turn start the same attack action there (not applicable to the frame above as there are only two players).
+  * The actual data replicated is a struct containing both `IsRunning` and `InstigatorActor`, this is how client 2 knows which actor should perform the action when it is replicated (actions are also instanced and those instances are replicated across the network, which is another way the action could tell which character to execute on. But in this case the action is set up to trigger on the instigator and not its owner. See the section above on Networked Action Framework for more details).
+
+**Sequence Diagram:**
 
 ![Exact function names left out for brevity.](<../../../.gitbook/assets/replication example projectile dealing damage.drawio (4).png>)
 
-The client pressed their attack key, immediately running the cosmetic parts of the attack locally. The client does not start a timer to spawn the attack projectile as projectiles are replicated server->client, making spawning one here redundant. The client makes a **reliable** RPC to the server to also start the action. The server then runs the action, playing cosmetic effects but this time also setting the timer to spawn the attack projectile. If there were a second client in this instance, the server would also replicate the Attack action's `IsRunning` property, triggering a RepNotify on the second client that would also play the cosmetic effects of the attack on that client.
+**Code:**
 
-**Code**
+See [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) for full solution (extends the [Networked Action Framework](networked-multiplayer.md#networked-action-framework) detailed above).
 
-* [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) (also see Networked Actions section above)
+Effects are played by everyone:
+
+```cpp
+InstigatorCharacter->PlayAnimMontage(AttackAnim);
+UGameplayStatics::SpawnEmitterAttached(
+    SpellCastVFX, 
+    InstigatorCharacter->GetMesh(), 
+    InstigatorCharacter->GetHandSocketName());
+```
+
+But only the server should spawn projectiles (check `HasAuthority()`):
+
+```cpp
+if (InstigatorCharacter->HasAuthority())
+{
+    FTimerDelegate TimerDel;
+    TimerDel.BindLambda([=]() { SpawnProjectile(InstigatorCharacter); });
+    GetWorld()->GetTimerManager().SetTimer(
+        TimerHandle, TimerDel, AttackDelaySeconds, false);
+}
+```
 
 ### 2. Server spawns attack projectile
 
+**Frame:**
+
 ![](<../../../.gitbook/assets/image (9).png>)
 
-The server's timer is up and it spawns a magic projectile. That projectile is replicated to the client.
+**What's happening?**
 
-**Sequence Diagram**
+* The server's timer runs out, starting the SpawnProjectile sequence
+* The server computes the location to fire the projectile towards (from the player's hand position on the server towards the nearest actor underneath the player's reticle) and then spawns the projectile.
+* The projectile is then replicated to both clients (including it's direction and movement properties).
+
+**Sequence Diagram:**
 
 ![](<../../../.gitbook/assets/image (1).png>)
 
-The server's timer runs out and it computes the location to fire the projectile towards (from the player's hand position on the server towards the nearest actor underneath the player's reticle) and then spawns the projectile. The projectile is then replicated to both clients (including it's direction and movement properties).
+**Code:**
 
-Latency Factors to Consider:
+The projectile is composed of Unreal-provided classes that are pre-configured to replicate. All we have to do is spawn the projectile:
 
-* The attack target is computed based on the player's control rotation (with the way the camera is set up, this is directly under their reticle where they are looking). Especially with a mouse, if the client is looking around quickly their control rotation could vary quite a bit from the server's last recorded control rotation from the player, causing the projectile to fire in a different direction than the client saw on their screen as the animation played. This would require further testing under higher latency conditions to optimize.
+`GetWorld()->SpawnActor(ProjectileClass, SpawnTM, SpawnParams);`
 
-**Code**
+**Latency considerations:**
 
-* Replication of projectiles is handled entirely by Unreal out-of-the-box.
+The attack target is computed based on the player's control rotation (with the way the camera is set up, this is directly under their reticle where they are looking). Especially with a mouse, if the client is looking around quickly their control rotation could vary quite a bit from the server's last recorded control rotation from the player, causing the projectile to fire in a different direction than the client saw on their screen as the animation played. This would require further testing under higher latency conditions to optimize.
 
 ### 3. Attack projectile damages and burns an opponent player
 
+**Frame:**
+
 ![](<../../../.gitbook/assets/image (5).png>)
 
-The magic projectile collides with player on server and client (as this screenshot was taken on a local network, the projectiles locations are almost exactly in sync) and play explosion VFX in response to the collision. Only the server applies the damage and burning effect to the hit actor. However, the damage and burning effect are then replicated back to the client. The server Multicasts the health change, and so the client and server both respond with cosmetic effects (update health bars, show floating damage text, apply hitflash effect, etc.)
+**What's happening?**
 
-**Sequence Diagram**
+* The projectile overlaps with another actor on both the server and the client (due to good latency, both projectiles are in sync), playing explosion effects on each.&#x20;
+* The server then applies damage to the overlapped actor. That damage is then replicated back to the client, and a **reliable** multicast RPC triggers a health change broadcast, notifying all listeners (UI, etc.).&#x20;
+* Listeners on the client play corresponding effects (damage popup text, health bar updates, etc.) and listeners on the server play effects and apply further attribute changes (for example updating rage which increases when damaged \[also networked but not pictured in diagram]).&#x20;
+* Finally, the server applies a burning effect to the overlapped actor which is replicated via the Action framework discussed above.
+
+**Sequence Diagram:**
 
 ![](../../../.gitbook/assets/image.png)
 
-The projectile overlaps with another actor on both the server and the client (due to good latency, both projectiles are in sync), playing explosion effects on each. The server then applies damage to the overlapped actor. That damage is then replicated back to the client, and a **reliable** multicast RPC triggers a health change broadcast, notifying all listeners (UI, etc.). Listeners on the client play corresponding effects (damage popup text, health bar updates, etc.) and listeners on the server play effects and apply further attribute changes (for example updating rage which increases when damaged \[also networked but not pictured in diagram]). Finally, the server applies a burning effect to the overlapped actor which is replicated via the Action framework discussed above.
+**Code:**
 
-Latency considerations:
+* Everyone [Explode()](https://github.com/Juwce/ActionRoguelike/blob/3743f15a53c88166833e7a5963a299cbf0770597/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp#L82)s, but only the server `HasAuthority()` to apply the damage action effect (in this case a burning effect).
+* Dealing damage ([AttributeComponent::ApplyHealthChange()](https://github.com/Juwce/ActionRoguelike/blob/3743f15a53c88166833e7a5963a299cbf0770597/Source/ActionRoguelike/Private/TAttributeComponent.cpp#L108)) and applying effects ([ActionComponent::AddAction()](https://github.com/Juwce/ActionRoguelike/blob/3743f15a53c88166833e7a5963a299cbf0770597/Source/ActionRoguelike/Private/TActionComponent.cpp#L107)) can only be performed by the authority.
+
+**Latency considerations:**
 
 * In this example, all three projectiles are in sync and overlap with the same actor on the client and server. However this may not always be in case if the game states fall out of sync on high latency connections. In these cases, the server would remain the authority on the game state, but the client(s) would see odd visual behavior:
   * Projectile overlaps on client but not server:
@@ -265,15 +309,15 @@ Latency considerations:
   * Projectile overlaps on both (pictured in frame)
     * Client and server see explosion effects and damage and burning effect are applied.
 
-**Code**
+{% hint style="info" %}
+**Important note** on using asserts() when checking for authority in core game systems:
 
-* [TProjectile\_Magic.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TProjectile\_Magic.cpp)
-
-****
+`ActionComponent::AddAction()`does the smart thing and asserts (`ensure` is a form of assert in Unreal) that clients cannot add actions. This is very helpful a developer will be clearly alerted whenever they try and add an action client-side. `AttributeComponent::ApplyHealthChange()` does not have this safety check, and you can see in the commits linked above that the client does try to change the player's health in `Explode()` without checking `HasAuthority()`, and only further down the execution chain in `ApplyHealthChange()` does this damage actually get prevented. Since this damage is prevented silently (no assert), the developer may would have to check far down the execution chain to see that their client-side call was not actually changing the player's health. Asserting authority in the core systems of your game is a great way to alert yourself and other developers clearly when they are trying to modify values they shouldn't.
+{% endhint %}
 
 <details>
 
-<summary>Work in progress...</summary>
+<summary>Networked Attributes</summary>
 
 ### Networked Attributes
 
