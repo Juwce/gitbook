@@ -1,33 +1,32 @@
-# About Me
+# About M
 
-<img src=".gitbook/assets/me.jpg" alt="" data-size="original">&#x20;
+
+
+![](.gitbook/assets/IMG\_6434.jpg)
 
 Welcome to my site! I am an experienced Software Engineer and [Technical Product Manager](https://www.productplan.com/glossary/technical-product-manager/) passionate about video games and entrepreneurship.
 
 I am currently taking a few months off of work to learn the skills necessary to work professionally in the video game industry, and this site serves as a demonstration of and documentation for everything I have learned about making games so far.
 
-## **Game Projects**
+You can use the side-bar to navigate my site, or jump directly to something interesting you see below.
 
-* #### [Action Roguelike (C++ Project in Unreal)](group-1/action-roguelike-c++-project-in-unreal/)
-  * Core Features:
-    * [Networked Multiplayer (C++)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md)
-    * [Minion AI (Behavior Trees)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md)
-    * [Projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)
-    * and many more (pages to be written)
+### **Game Dev**
 
-Also see my [Game Dev](about-me/reading-list.md#game-dev-books) book reading list.
+Learn about my [ActionRogueLike ](group-1/action-roguelike-c++-project-in-unreal/)C++ Project in Unreal, developed as a part of a Stanford University project course on professional game development. I cover my implementation of core game features such as [networked multiplayer](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md), [minion AI with behavior trees](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md), and [projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md) in depth with code, screenshots and diagrams.
 
-## **Professional Experience**
+I also wrote some [Unreal Engine Notes](<README (1).md>) that I use as a reference for some of the engine's trickier C++ features.
 
-* [Resume (PDF)](about-me/resume-2022.md)
-* [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/)
+Also see my [Game Dev book](about-m/reading-list.md#game-dev-books) reading list.
 
-## Outside Interests
+### Professional Experience
 
-I love gaming, travel, gaining new skills and perspectives from non-fiction **** books **** and podcasts, and various forms of exercise and getting outdoors.
+Find me on [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/) or check out my [resume](about-m/resume-2022.md).
 
-* [Reading List](about-me/reading-list.md)
-* [Favorite Games](about-me/favorite-games.md)
+### Outside Interests
+
+When I'm not working you can usually find me gaming, traveling, reading non-fiction books, and getting various forms of exercise at the gym and in the great outdoors.
+
+Check out my [non-fiction book](about-m/reading-list.md#non-fiction-books) reading list and some of my [favorite games](about-m/favorite-games.md).
 
 <details>
 
