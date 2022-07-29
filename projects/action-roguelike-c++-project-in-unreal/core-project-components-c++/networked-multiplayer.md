@@ -2,7 +2,7 @@
 
 ![Multiplayer support for any number of players.](../../../.gitbook/assets/bb547cfcbe98f258ec8337548dff8bee.gif)
 
-Every aspect of this project also works (locally tested over IP🤞) in networked multiplayer for any number of players!
+Every aspect of this project also works in networked multiplayer for any number of players!
 
 * Actions
 * Attributes
