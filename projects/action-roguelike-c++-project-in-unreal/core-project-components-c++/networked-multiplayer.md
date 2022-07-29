@@ -16,7 +16,12 @@ This project leverages Unreal Engine's C++ networking framework for replicating 
 
 Instead of covering every detail of this project's networking, the below sections break down one of the most challenging networking implementations in the project, networked actions. Note that some of the logic comes from [the course](../../../group-1/action-roguelike-c++-project-in-unreal/) I took, but the thorough breakdown of how it all works, and diagrams below are entirely my own.
 
-## Networked Actions
+### Jump to Section...
+
+* [Networked Action Framework](networked-multiplayer.md#networked-action-framework)
+* [Frame-by-Frame Example](networked-multiplayer.md#frame-by-frame-example)
+
+## Networked Action Framework
 
 "Actions" are part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike). Diagrams and examples below are entirely my own.
 
