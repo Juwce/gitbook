@@ -201,7 +201,7 @@ void UTAction::OnRep_RepData()
 {% endtab %}
 {% endtabs %}
 
-## Frame by Frame Example:
+## Frame-by-Frame Example:
 
 This section breaks down the network logic for this networked attack sequence frame-by-frame:
 
