@@ -3,13 +3,12 @@ cover: ../../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif
 coverY: 0
 ---
 
-# Projectiles
+# Projectiles & Targeting
 
-Jump to section...
+### Jump to section...
 
-<mark style="background-color:blue;"></mark>[#projectile-targeting](projectiles.md#projectile-targeting "mention")<mark style="background-color:blue;"><mark style="color:blue;"><mark style="color:blue;"></mark>
-
-<mark style="color:blue;"></mark>[#projectile-classes](projectiles.md#projectile-classes "mention")<mark style="color:blue;background-color:blue;"></mark>
+* [Projectile Targeting](projectiles-and-targeting.md#projectile-targeting)
+* [Projectile Classes](projectiles-and-targeting.md#projectile-classes)
 
 ## Projectile Targeting
 

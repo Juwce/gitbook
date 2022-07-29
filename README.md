@@ -10,7 +10,7 @@ You can use the sidebar on the left to navigate my site, or jump directly to som
 
 ### **Game Dev**
 
-Learn about my [ActionRogueLike ](group-1/action-roguelike-c++-project-in-unreal/)C++ Project in Unreal. I cover my implementation of core game features such as [networked multiplayer](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md), [minion AI with behavior trees](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md), and [projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md) in depth with code, screenshots and diagrams.
+Learn about my [ActionRogueLike ](group-1/action-roguelike-c++-project-in-unreal/)C++ Project in Unreal. I cover my implementation of core game features such as [networked multiplayer](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md), [minion AI with behavior trees](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md), and [projectiles](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles-and-targeting.md) in depth with code, screenshots and diagrams.
 
 I also wrote some [Unreal Engine Notes](<README (1).md>) that I use as a reference for some of the engine's trickier C++ features.
 

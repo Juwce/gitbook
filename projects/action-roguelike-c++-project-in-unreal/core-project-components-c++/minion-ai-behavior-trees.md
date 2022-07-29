@@ -6,12 +6,22 @@ coverY: -46.33016265337739
 
 # Minion AI (Behavior Trees)
 
-## Code and Assets
+## Classes and Assets
 
-Code and assets for this project's AI implementation can be found on GitHub. Individual files will also be linked to in the sections below.
+C++ classes and Unreal assets for this project's AI can be found on GitHub:
 
-* AI Classes: [Private / .cpp](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI) || [Public / .h](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Public/AI)
-* Behavior Tree, EQS, another other Unreal AI assets: [AI Assets](https://github.com/Juwce/ActionRoguelike/tree/main/Content/ActionRoguelike/AI)
+* [AI Classes - github](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI) ([headers](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI))
+  * AI Character classes: `TAICharacter`, `TAIController`
+  * Behavior Tree Node Classes: `TBTService_CheckAttackRange`, `TBTService_CheckHealth`, `TBTTask_HealSelf`, `TBTTask_RangeAttack`
+* [AI Assets - github](https://github.com/Juwce/ActionRoguelike/tree/main/Content/ActionRoguelike/AI)
+
+### **Jump to Section...**
+
+* [AI Setup](minion-ai-behavior-trees.md#ai-setup)
+* [Minion Behavior Tree](minion-ai-behavior-trees.md#minion-behavior-tree)
+* [Behavior: Move Near Target and Attack](minion-ai-behavior-trees.md#behavior-move-near-target-and-attack)
+* [Behavior: Hide and Heal](minion-ai-behavior-trees.md#behavior-hide-and-heal)
+* [Unreal Built-In Nodes Used](minion-ai-behavior-trees.md#unreal-built-ins-1)
 
 ## AI Setup
 
@@ -55,14 +65,15 @@ AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 ![The full behavior tree for the ranged minion AI (broken down below). Services are Green || Decorators are Blue || Composites are Gray || Tasks are Purple](<../../../.gitbook/assets/bt ui.png>)
 
+#### **Unreal Behavior Tree terminology overview:**
+
 <details>
 
-<summary>Click to Expand... <strong>Unreal Behavior Trees Terminology (Quick Reference)</strong></summary>
+<summary>Click to Expand...</summary>
 
-[Differences in UE4 Behavior Trees](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/#differencesinue4behaviortrees) (compared to traditional behavior trees)
-
-* **Blackboard** - Key:value store for sharing data between behaviors in the tree (optimized for access and performance).
-* Nodes:
+* [Differences in UE4 Behavior Trees](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/#differencesinue4behaviortrees) (compared to traditional behavior trees)
+* Terminology:
+  * **Blackboard** - Key:value store for sharing data between behaviors in the tree (optimized for access and performance).
   * <mark style="color:green;">Service Nodes</mark> - Execute at a defined frequency as long as their branch is being executed. Often used to make checks and update the Blackboard.
   * <mark style="color:blue;">Decorator Nodes</mark> - Attach to other nodes and make decisions on whether or not a branch or node in the tree can execute. Decorator nodes are able to change the flow of a tree by aborting lower priority executing nodes and executing their branch immediately (for example, to have an AI immediately stop whatever it was doing to flee when its health drops low, you might put a decorator node that monitors its health status value in the blackboard and aborts other running nodes when it's set to "Low").
   * <mark style="color:purple;">Task Nodes</mark> - Actionable things to do. Task nodes perform some behavior and don't have an output connection.
@@ -72,93 +83,46 @@ AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 ## Behavior: Move Near Target and Attack
 
-![AI behavior to move near target and attack it (left) and the behavior tree powering it (right).](<../../../.gitbook/assets/bt demo move and attack.gif>)
+![AI moves near target and attack it (left) and the behavior tree powering it (right).](<../../../.gitbook/assets/bt demo move and attack.gif>)
 
-### Implementation:
+### Custom nodes:
+
+* [TBTService\_CheckAttackRange.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckAttackRange.cpp)
+* [TBTTask\_RangedAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_RangedAttack.cpp)
+
+### Behavior tree branch:
 
 ![Services are Green || Decorators are Blue || Selectors are Gray || Tasks are Purple](<../../../.gitbook/assets/image (4).png>)
 
-**Attack Target if within Attack Range**
+**Sequence: Attack Target if within Attack Range**
 
-If the target is within attack range, the AI will attack the target three times and then go on a three second cooldown. Note the service running the attack range check is not pictured here as that runs as a service at the root of the behavior tree (every half second or so).
+[TBTService\_CheckAttackRange.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckAttackRange.cpp) (not pictured) constantly monitors the distance between the AI's controlled minion and the target, setting the `WithinAttackRange` Blackboard key accordingly. If the target is within attack range when execution flow is passed to this branch, the AI executes [TBTTask\_RangedAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_RangedAttack.cpp), firing a projectile from the AI minion's muzzle at the target three times. This attack has a configurable deviation that can be used to tune AI difficulty (higher deviations make the attack more inaccurate). The attack is then put on cooldown.
 
-**Move Closer to Target Actor**
+**Sequence: Move Closer to Target Actor**
 
-If the target is not within the attack range, the AI minion will find a random location on the navmesh nearby and with line of site to the target actor and move to it. If there is no target actor (a target has not been spotted by the AI yet), the AI "cheats" and moves towards the controlling player (or the first player to join the match in multiplayer).&#x20;
-
-### C++ Classes:
-
-Unreal's behavior trees provide a plethora of [built-in nodes](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/BehaviorTrees/BehaviorTreeNodeReference/) that can be used to run basic behaviors. This AI leverages these built-ins for basic behaviors, but for custom ones I needed to write my own functionality in C++. I wrote the following nodes in C++:
-
-#### BT Services
-
-* CheckAttackRange <mark style="background-color:green;">(Service)</mark>
-  * Continually monitors if the controlled AI actor has line of site to the Target Actor, storing the result in the Blackboard key for easy access by the rest of the BT.
-  * See implementation on GitHub: [TBTService\_CheckAttackRange.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckAttackRange.cpp)
-
-**BT Tasks**
-
-* RangedAttack <mark style="background-color:purple;">(Task)</mark>
-  * Fires a projectile at the target actor from the controlled AI character's muzzle.&#x20;
-  * A configurable deviation is applied to tune AI difficulty (higher deviations make the attack more inaccurate)
-  * See implementation on GitHub: [TBTTask\_RangedAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_RangedAttack.cpp)
-
-### Unreal Built-Ins:
-
-I configured and used the following built-in Unreal nodes:
-
-#### **BT Tasks**
-
-* Finding a random location on the navmesh closer to the target actor and line of site checks are performed by Unreal's [Environmental Query System](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/), configured with Blueprints (Query in a donut shape around the player, projecting locations onto the navmesh and checking for line of site. Assign each valid location a weight based on distance to the player \[closer is better] and pick the one with the highest score).
-* The movement along the navmesh to the target location also used Unreal's built-in "Move To" task.
+If the target actor is not `WithinAttackRange` or the attack is on cooldown, the AI will run an [EQS](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/) query to find a random location on the navmesh nearby and with line of site to the target actor, and [move to](https://docs.unrealengine.com/4.26/en-US/BlueprintAPI/AI/Navigation/MovetoLocation/) that location. If there is no target actor set (a target has not been spotted by the AI yet), the AI "cheats" and picks Player 0 (first player to join the session) as its target instead.
 
 ## Behavior: Hide and Heal
 
 ![Upon dropping to low health, the AI will stop whatever it is doing immediately to go hide and heal.](<../../../.gitbook/assets/bt demo hide and heal.gif>)
 
-### Implementation:
+### Custom nodes:
 
-The hide and heal sequence is set up to abort any lower priority executing nodes whenever the "LowHealth" key is set.
+* [TBTService\_CheckHealth.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckHealth.cpp)
+* [TBTTask\_HealSelf.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_HealSelf.cpp)
+
+### Behavior tree branch:
 
 ![Services are Green || Decorators are Blue || Selectors are Gray || Tasks are Purple](<../../../.gitbook/assets/image (3).png>)
 
-**Stop all other actions when health drops low:**
+**Observer Aborts: Stop all other actions when health drops low:**
 
-The decorator "Health Low" at the top of this behavior's branch is set to Abort Lower Priority whenever the "HealthLow" key changes. Since this is the highest priority node in the tree, this means the AI will always immediately stop whatever else it was doing to go hide and heal when its health drops low. A custom C++ service constantly monitor's the AI's health, setting the "HealthLow" BlackBoard key when it drops.
+[TBTService\_CheckHealth.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckHealth.cpp) (not pictured) monitors minion's health, updating the `HealthLow` Blackboard key when it drops below a configurable threshold. The AI monitors the `HealthLow` key for changes (via the "HealthLow?" decorator). When it observes a change, this decorator [immediately aborts](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/BehaviorTrees/BehaviorTreeNodeReference/BehaviorTreeNodeReferenceDecorators/) lower priority executing nodes and starts executing the hide and heal sequence.
 
-**Find a hiding spot and move to it:**
+**Sequence: Find a hiding spot and move to it:**
 
-This leverages Unreal's Environmental Query System to find a spot on the navmesh away from the attack target and without line of site. If it can't find a hidden location, it picks the furthest possible spot away from the target actor, but within a maximum radius so the AI does not run away too far.
+The AI will then find a safe spot on the navmesh via Unreal's EQS and move to it. A "safe spot" is determined via EQS's [scoring system](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/EQSNodeReference/EQSNodeReferenceTests/). Candidates are scored based on line of site to the AI's target (strong weight), and then a distance to the AI's target (lower weight, farther is better). The end result is the AI picks from locations without line of site from the target ("hidden") first, and then based on distance to the target second (within a maximum radius of the target, so the AI doesn't run too far away).
 
-**Heal Self and Cooldown:**
+**Sequence: Heal Self and Cooldown:**
 
-Finally, once it reaches its determined safe spot, the AI heals itself via a custom C++ task. This ability goes on cooldown for 60 seconds (meaning the AI will not perform this sequence nor abort other lower priority nodes the next time the AI's health drops low as long as this cooldown is active).
-
-### C++ Classes:
-
-I wrote the following nodes in C++:
-
-#### BT Services
-
-* CheckHealth <mark style="background-color:green;">(Service)</mark>
-  * Continually monitors the health of the controlled AI actor (via its AttributeComponent), storing the result in a Blackboard key for easy access by the rest of the BT.
-  * See implementation on GitHub: [TBTService\_CheckHealth.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTService\_CheckHealth.cpp)
-
-**BT Tasks**
-
-* HealSelf <mark style="background-color:purple;">(Task)</mark>
-  * Heals the controlled AI actor
-  * Configurable `HealingType`, value, and duration (able to perform a heal over time, split into multiple 'ticks')
-    * Healing Types:
-      * `EHealingType::HealthPoints` - heal a fixed number of health points
-      * `EHealingType::PercentOfHealthMax` - heal a set percent of health points
-  * See implementation on GitHub: [TBTTask\_HealSelf.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_HealSelf.cpp)
-
-### Unreal Built-Ins:
-
-I configured and used the following built-in Unreal nodes:
-
-**BT Tasks**
-
-* Find location hidden from players - leverages Unreal's EQS editor to find a location on the navmesh within a radius of the target actor but without line of site.
-* The hide and heal behavior also leverages Unreal's built-in "Observer Aborts" feature to stop the execution of lower priority nodes (e.g. the move and attack behavior) immediately whenever the AI's health drops low. I configured the "Health Low?" decorator to monitor the "LowHealth" blackboard key set by the CheckHealth service, and immediately start executing the hide and heal one.
+Finally, once it reaches its determined safe spot, the AI heals itself via executing [TBTTask\_HealSelf.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/AI/TBTTask\_HealSelf.cpp). This branch then goes on cooldown for 60 seconds (meaning the AI will not perform this sequence nor abort other lower priority nodes the next time the AI's health drops low as long as this cooldown is active).

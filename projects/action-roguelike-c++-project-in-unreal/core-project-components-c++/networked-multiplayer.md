@@ -7,10 +7,11 @@ Every aspect of this project also works in networked multiplayer for any number 
 * Actions
 * Attributes
 * Powerups
-* Projectiles
-* User Interface
+* Interaction
+* World UI Widgets (floating damage text, health bars)
 * Actor spawning and movement (built-in from Unreal)
 * AI (built-in from Unreal)
+* etc.
 
 This project leverages Unreal Engine's C++ networking framework for replicating game state, and limits the direct modification of non-cosmetic game state to the server (`HasAuthority()`). Clients wishing to change game state must do so through requests to the server. Care was taken to limit use of RPCs (remote procedure calls) and reliable / tcp network calls and to limit passed data to the bare minimum needed for a client/server to update game state in order to preserve network performance.
 
