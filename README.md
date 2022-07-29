@@ -2,19 +2,32 @@
 
 <img src=".gitbook/assets/me.jpg" alt="" data-size="original">&#x20;
 
-Welcome to my site! I am an experienced Software Engineer and Technical Product Manager passionate about video games and entrepreneurship.&#x20;
+Welcome to my site! I am an experienced Software Engineer and [Technical Product Manager](https://www.productplan.com/glossary/technical-product-manager/) passionate about video games and entrepreneurship.
 
 I am currently taking a few months off of work to learn the skills necessary to work professionally in the video game industry, and this site serves as a demonstration of and documentation for everything I have learned about making games so far.
 
-[LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/)
+## **Game Projects**
 
-[Resume (Game Programmer-focus)](about-me/resume-2022.md)
+* #### [Action Roguelike (C++ Project in Unreal)](group-1/action-roguelike-c++-project-in-unreal/)
+  * Core Features:
+    * [Networked Multiplayer (C++)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md)
+    * [Minion AI (Behavior Trees)](projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md)
+    * [Projectiles](group-1/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles.md)
+    * and many more (pages to be written)
 
-[Projects](broken-reference)
+Also see my [Game Dev](about-me/reading-list.md#game-dev-books) book reading list.
 
-[Reading List](about-me/reading-list.md)
+## **Professional Experience**
 
-[Favorite Games](about-me/favorite-games.md)
+* [Resume (PDF)](about-me/resume-2022.md)
+* [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/)
+
+## Outside Interests
+
+I love gaming, travel, gaining new skills and perspectives from non-fiction **** books **** and podcasts, and various forms of exercise and getting outdoors.
+
+* [Reading List](about-me/reading-list.md)
+* [Favorite Games](about-me/favorite-games.md)
 
 <details>
 
@@ -26,7 +39,7 @@ My two passions have always been video games and entrepreneurship. I picked my c
 
 #### **Outside Interests**
 
-I love gaming, learning new skills and perspectives from non-fiction books, travel, various forms of exercise and getting outdoors.
+
 
 </details>
 
