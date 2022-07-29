@@ -37,7 +37,7 @@ Click on the "Diagram" tab to see a flow-chart walking through how the logic rep
 
 {% tabs %}
 {% tab title="Code" %}
-1\. Only the server can grant or revoke actions:
+**1.** Only the server can grant or revoke actions:
 
 {% code title="ActionComponent.cpp" %}
 ```cpp
@@ -61,7 +61,7 @@ void UTActionComponent::AddAction(
 
 
 
-2\. Action instances stored in an actor's ActionComponent are replicated across the network.
+**2.** Action instances stored in an actor's ActionComponent are replicated across the network:
 
 {% code title="ActionComponent.h" %}
 ```cpp
@@ -111,7 +111,7 @@ bool UTActionComponent::ReplicateSubobjects(
 
 {% tabs %}
 {% tab title="Code" %}
-3\. Anyone can start an action. If an action is started by the client, also start that action on the server:
+**3.** Anyone can start an action. If an action is started by the client, also start that action on the server:
 
 {% code title="ActionComponent.cpp" %}
 ```cpp
@@ -146,7 +146,7 @@ void ServerStartAction(AActor* Instigator, FName ActionName);
 
 
 
-4\. Whenever a client OR server starts an action, that action is started in all other sessions on the network.
+**4.** Whenever a client OR server starts an action, that action is started in all other sessions on the network.
 
 {% code title="TAction.h" %}
 ```cpp
