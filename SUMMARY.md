@@ -3,6 +3,7 @@
 * [About Me](README.md)
   * [Reading List](about-me/reading-list.md)
   * [Favorite Games](about-me/favorite-games.md)
+  * [Resume (2022)](about-me/resume-2022.md)
 * [Unreal Engine Notes](<README (1).md>)
   * [Responding to Unreal Engine Editor Selection (C++)](unreal-engine-notes/responding-to-unreal-engine-editor-selection-c++.md)
 
