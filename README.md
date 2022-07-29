@@ -8,7 +8,7 @@ I am currently taking a few months off of work to learn the skills necessary to 
 
 [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/)
 
-Resume (Game Programmer-focus)
+[Resume (Game Programmer-focus)](about-me/resume-2022.md)
 
 [Projects](broken-reference)
 
