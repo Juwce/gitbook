@@ -14,7 +14,7 @@ Leverages Unreal Engine's networking framework for replicating game state, and l
 
 ### Networked Actions
 
-"Actions" are part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike).
+"Actions" are part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike). Diagrams and examples below are entirely my own.
 
 In this Action framework, any actor assigned an Action Component ([TActionComponent.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TActionComponent.cpp)) has access to an array of Action objects ([TAction.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction.cpp)) that define arbitrary logic that can be started and stopped. Actions can be granted or revoked to an actor, giving them and taking away functionality at the start of or during gameplay (e.g. sprinting, attacks, jumping, etc.). The actions within an action component, as well as the starting and stopping of actions are replicated across the network, providing a useful way to manage the performing of arbitrary gameplay actions over the network to any number of players.
 
@@ -50,6 +50,8 @@ void UTActionComponent::AddAction(
 }
 ```
 {% endcode %}
+
+
 
 2\. Action instances stored in an actor's ActionComponent are replicated across the network.
 
@@ -88,14 +90,14 @@ bool UTActionComponent::ReplicateSubobjects(
 }
 ```
 {% endcode %}
-
-
 {% endtab %}
 
 {% tab title="Diagram" %}
-![Flow diagram for 1 & 2](../../../.gitbook/assets/image.png)
+![Flow diagram for 1 & 2](<../../../.gitbook/assets/image (10).png>)
 {% endtab %}
 {% endtabs %}
+
+
 
 {% tabs %}
 {% tab title="Code" %}
@@ -129,6 +131,8 @@ UFUNCTION(Server, Reliable)
 void ServerStartAction(AActor* Instigator, FName ActionName);
 ```
 {% endcode %}
+
+
 
 4\. Whenever a client OR server starts an action, that action is started in all other sessions on the network.
 
@@ -174,7 +178,7 @@ void UTAction::OnRep_RepData()
 {% endtab %}
 
 {% tab title="Diagram" %}
-![](<../../../.gitbook/assets/image (2).png>)
+![Flow diagram for 3 & 4](../../../.gitbook/assets/image.png)
 {% endtab %}
 {% endtabs %}
 
@@ -186,7 +190,7 @@ void UTAction::OnRep_RepData()
 
 ### 1. Client starts an Attack
 
-![Client Action\_ProjectileAttack::StartAction(), triggering the action on the client and server. Both the client and the server start the attack windup animation and VFX (purely cosmetic). The server starts a timer to spawn the attack's projectile.](<../../../.gitbook/assets/image (1).png>)
+![Client Action\_ProjectileAttack::StartAction(), triggering the action on the client and server. Both the client and the server start the attack windup animation and VFX (purely cosmetic). The server starts a timer to spawn the attack's projectile.](<../../../.gitbook/assets/image (1) (2).png>)
 
 In this frame we see the client's character starting an attack and the attack replicating to the server (in the form of playing a wind-up animation and spawning particle VFX at the hand).
 

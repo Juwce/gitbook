@@ -19,7 +19,7 @@ Note that in order to keep the snippets within the line character limit, the cod
 
 Projectiles should fire from the character's hand towards the nearest valid target under the player's reticle. Calculating the projectile's spawn parameters takes some simple 3D math, described below.
 
-![Projectiles should fire from the character's hand to the nearest valid target under player reticle](<../../../.gitbook/assets/image (6) (1).png>)
+![Projectiles should fire from the character's hand to the nearest valid target under player reticle](<../../../.gitbook/assets/image (6).png>)
 
 To aim the projectile in this way, we spawn the projectile at the character's hand, facing in the direction of the target.
 
