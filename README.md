@@ -1,6 +1,4 @@
-# About M
-
-
+# About Me
 
 ![](.gitbook/assets/IMG\_6434.jpg)
 
@@ -8,7 +6,7 @@ Welcome to my site! I am an experienced Software Engineer and [Technical Product
 
 I am currently taking a few months off of work to learn the skills necessary to work professionally in the video game industry, and this site serves as a demonstration of and documentation for everything I have learned about making games so far.
 
-You can use the side-bar to navigate my site, or jump directly to something interesting you see below.
+You can use the sidebar on the left to navigate my site, or jump directly to something interesting you see linked below.
 
 ### **Game Dev**
 
@@ -16,17 +14,17 @@ Learn about my [ActionRogueLike ](group-1/action-roguelike-c++-project-in-unreal
 
 I also wrote some [Unreal Engine Notes](<README (1).md>) that I use as a reference for some of the engine's trickier C++ features.
 
-Also see my [Game Dev book](about-m/reading-list.md#game-dev-books) reading list.
+Also see my [Game Dev book](about-me/reading-list.md#game-dev-books) reading list.
 
 ### Professional Experience
 
-Find me on [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/) or check out my [resume](about-m/resume-2022.md).
+Find me on [LinkedIn](https://www.linkedin.com/in/tim-hedstrom-5b211b84/) or check out my [resume](about-me/resume-2022.md).
 
 ### Outside Interests
 
 When I'm not working you can usually find me gaming, traveling, reading non-fiction books, and getting various forms of exercise at the gym and in the great outdoors.
 
-Check out my [non-fiction book](about-m/reading-list.md#non-fiction-books) reading list and some of my [favorite games](about-m/favorite-games.md).
+Check out my [non-fiction book](about-me/reading-list.md#non-fiction-books) reading list and some of my [favorite games](about-me/favorite-games.md).
 
 <details>
 
