@@ -14,9 +14,9 @@ Every aspect of this project also works in networked multiplayer for any number 
 
 This project leverages Unreal Engine's C++ networking framework for replicating game state, and limits the direct modification of non-cosmetic game state to the server (`HasAuthority()`). Clients wishing to change game state must do so through requests to the server. Care was taken to limit use of RPCs (remote procedure calls) and reliable / tcp network calls and to limit passed data to the bare minimum needed for a client/server to update game state in order to preserve network performance.
 
-Instead of covering every detail of this project's networking, the below sections break down one of the most challenging networking implementations in the project, networked actions. Note that some of the logic comes from [the course](../../../group-1/action-roguelike-c++-project-in-unreal/) I took, but the thorough breakdown of how it all works and diagrams below are entirely my own.
+Instead of covering every detail of this project's networking, the below sections break down one of the most challenging networking implementations in the project, networked actions. Note that some of the logic comes from [the course](../../../group-1/action-roguelike-c++-project-in-unreal/) I took, but the thorough breakdown of how it all works, and diagrams below are entirely my own.
 
-### Networked Actions
+## Networked Actions
 
 "Actions" are part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike). Diagrams and examples below are entirely my own.
 
@@ -196,9 +196,9 @@ void UTAction::OnRep_RepData()
 {% endtab %}
 {% endtabs %}
 
-## Frame By Frame Example:
+## Frame by Frame Example:
 
-In this section I will break down the network logic for this networked attack sequence frame-by-frame:
+This section breaks down the network logic for this networked attack sequence frame-by-frame:
 
 ![The player's attack replicates over the network.](<../../../.gitbook/assets/networked projectiles and health 2.gif>)
 
