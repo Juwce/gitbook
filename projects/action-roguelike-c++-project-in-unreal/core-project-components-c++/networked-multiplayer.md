@@ -13,9 +13,9 @@ Every aspect of this project also works in networked multiplayer for any number 
 * AI (built-in from Unreal)
 * etc.
 
-This project leverages Unreal Engine's C++ networking framework for replicating game state, and limits the direct modification of non-cosmetic game state to the server (`HasAuthority()`). Clients wishing to change game state must do so through requests to the server. Care was taken to limit use of RPCs (remote procedure calls) and reliable / tcp network calls and to limit passed data to the bare minimum needed for a client/server to update game state in order to preserve network performance.
+This project leverages Unreal Engine's C++ [networking framework](https://docs.unrealengine.com/5.0/en-US/networking-and-multiplayer-in-unreal-engine/) for replicating game state, and limits the direct modification of non-cosmetic game state to the server (`HasAuthority()`). Clients wishing to change game state must do so through requests to the server. Care was taken preserve network performance by limiting use of RPCs (remote procedure calls), reliable / tcp network calls, and only replicating the bare minimum amount of data needed for a client/server to update game state in order to preserve network performance.
 
-Instead of covering every detail of this project's networking, the below sections break down one of the most challenging networking implementations in the project, networked actions. Note that some of the logic comes from [the course](../../../group-1/action-roguelike-c++-project-in-unreal/) I took, but the thorough breakdown of how it all works, and diagrams below are entirely my own.
+Instead of covering every detail of this project's networking, the below sections break down one of the most challenging networking implementations in the project, networked actions. Note that this framework comes from [the course](https://courses.tomlooman.com/p/unrealengine-cpp) I took, but the thorough breakdown of how it all works and diagrams below are entirely my own.
 
 ### Jump to Section...
 
@@ -24,16 +24,16 @@ Instead of covering every detail of this project's networking, the below section
 
 ## Networked Action Framework
 
-"Actions" are part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike). Diagrams and examples below are entirely my own.
+"Actions" are a part of the Action Framework designed by [Tom Looman](https://github.com/tomlooman/ActionRoguelike). Diagrams, descriptions and examples below are entirely my own.
 
-In this Action framework, any actor assigned an Action Component ([TActionComponent.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TActionComponent.cpp)) has access to an array of Action objects ([TAction.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction.cpp)) that define arbitrary logic that can be started and stopped. Actions can be granted or revoked to an actor, giving them and taking away functionality at the start of or during gameplay (e.g. sprinting, attacks, jumping, etc.). The actions within an action component, as well as the starting and stopping of actions are replicated across the network, providing a useful way to manage the performing of arbitrary gameplay actions over the network to any number of players.
+In this Action framework, any actor assigned an Action Component ([TActionComponent.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TActionComponent.cpp)) is given access to an array of Action objects ([TAction.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction.cpp)) that define arbitrary logic that can be started, stopped, granted and revoked (e.g. sprinting, attacks, jumping, etc.). The starting, stopping, granting and revoking of actions are replicated across the network, providing a useful way to manage the performing of arbitrary gameplay actions over the network to any number of players: just extend the Action class and put whatever functionality you want replicated in `StartAction()` and `StopAction()` (being mindful of the below network replication behavior).
 
 Actions exhibit the following networked behavior:
 
 1. Only the server can grant or revoke actions.
-2. Action instances stored in an actor's ActionComponent are replicated across the network.
-3. Clients can start actions, but only if they have been granted that action server.
-4. Whenever a client OR server starts an action, that action is started in all other sessions on the network.
+2. Granted actions are instanced, and these instances are stored in an actor's ActionComponent. Action instances are replicated across the network.
+3. Clients can start actions that have been granted by the server. When they do, that action is also started on the server.
+4. Whenever the server starts an action, that action is also started on all clients in the session (except the client that initially started the action, if the starting of the action originated from a client).
 
 ### Code for Networked Actions
 
@@ -53,8 +53,8 @@ void UTActionComponent::AddAction(
     if (!GetOwner()->HasAuthority)
     {
         UE_LOG(LogTemp, Warning,
-            TEXT("Client attempting to AddAction, Actions should only be added"
-                 " on the server. [Class: %s]"),
+            TEXT("Client attempting to AddAction, Actions should only be "
+                 "added on the server. [Class: %s]"),
             *GetNameSafe(ActionClass));
 	return;
     }
@@ -67,7 +67,7 @@ void UTActionComponent::AddAction(
 
 
 
-**2.** Action instances stored in an actor's ActionComponent are replicated across the network:
+**2.** Action instances are replicated across the network:
 
 {% code title="ActionComponent.h" %}
 ```cpp
@@ -117,7 +117,7 @@ bool UTActionComponent::ReplicateSubobjects(
 
 {% tabs %}
 {% tab title="Code" %}
-**3.** Anyone can start an action. If an action is started by the client, also start that action on the server:
+**3.** Clients can start actions. When they do, that action is also started on the server.
 
 {% code title="ActionComponent.cpp" %}
 ```cpp
@@ -152,7 +152,7 @@ void ServerStartAction(AActor* Instigator, FName ActionName);
 
 
 
-**4.** Whenever a client OR server starts an action, that action is started in all other sessions on the network.
+**4.** Whenever the server starts an action, that action is also started on all clients in the session (except the client that initially started the action, if the starting of the action originated from a client).
 
 {% code title="TAction.h" %}
 ```cpp
@@ -182,6 +182,20 @@ void OnRep_RepData();
 
 {% code title="TAction.cpp" %}
 ```cpp
+void UTAction::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+    // default rule that says to unconditionally replicate the value
+    // to all clients when changed
+    DOREPLIFETIME(UTAction, RepData);
+}
+
+/* 
+ * If the action was started from a client, the client will already have
+ * the same copy of RepData and will skip this call (rep notifies only
+ * trigger on data changes by default).
+ */
 void UTAction::OnRep_RepData()
 {
     if (RepData.bIsRunning)
@@ -201,6 +215,12 @@ void UTAction::OnRep_RepData()
 ![Flow diagram for 3 & 4](<../../../.gitbook/assets/image (7).png>)
 {% endtab %}
 {% endtabs %}
+
+{% hint style="danger" %}
+I noticed an issue with this action framework as I was writing this section. The implementation in #4 will cause issues if your action stops on the client before the request has time to make the round trip from client1->server->client1. In this case, `RepNotify()`will trigger, as `RepData.bIsRunning` will be false by the time the request makes its way back around.&#x20;
+
+This implementation needs to be improved by also passing along an instigating client ID in `RepData` that is checked in `OnRep_RepData()` to ensure an action does not get started twice (or recursively) on a client. Note this bug also exists in Tom Looman's [version of the code](https://github.com/tomlooman/ActionRoguelike/blob/master/Source/ActionRoguelike/Private/SAction.cpp). I will try and get around to fixing this in the future, but for now I wanted to leave this warning to any readers implementing the above.
+{% endhint %}
 
 ## Frame-by-Frame Example:
 
@@ -228,7 +248,7 @@ This section breaks down the network logic for this networked attack sequence fr
 
 **Code:**
 
-See [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) for full solution (extends the [Networked Action Framework](networked-multiplayer.md#networked-action-framework) detailed above).
+See [TAction\_ProjectileAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) for full solution (extends the [Networked Action Framework](networked-multiplayer.md#networked-action-framework) detailed above).
 
 Effects are played by everyone:
 
@@ -262,7 +282,7 @@ if (InstigatorCharacter->HasAuthority())
 
 * The server's timer runs out, starting the SpawnProjectile sequence
 * The server computes the location to fire the projectile towards (from the player's hand position on the server towards the nearest actor underneath the player's reticle) and then spawns the projectile.
-* The projectile is then replicated to both clients (including it's direction and movement properties).
+* The projectile is then replicated to both clients (including its direction and movement properties).
 
 **Sequence Diagram:**
 

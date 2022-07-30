@@ -2,7 +2,7 @@
 
 ![](../../.gitbook/assets/7505745748a13757e9c0878c487a267f.gif)
 
-Action Roguelike is a C++ focused (limited use of Blueprints) Unreal Engine project I developed during Tom Looman's [professional game development in C++ and Unreal Engine course](https://courses.tomlooman.com/p/unrealengine-cpp). This course was taught at Stanford in 2020 (and now available online to anyone) and is an intense, in-depth project-based course that dives deep into developing games professionally in C++, with Unreal Engine as the underlying engine.
+Action Roguelike is a C++ focused (limited use of Blueprints) Unreal Engine project I developed during Tom Looman's [professional game development in C++ and Unreal Engine course](https://courses.tomlooman.com/p/unrealengine-cpp). This course was taught at Stanford in 2020 (and now available online to anyone, which was how I took it) and is an intense, in-depth project-based course that dives deep into developing games professionally in C++, with Unreal Engine as the underlying engine.
 
 This project works with a broad range of Unreal's underlying systems in C++ and also develops new frameworks, interfaces, and gameplay mechanics in C++ from scratch. This section of my site is dedicated to explaining the project and its core components in detail.
 
@@ -12,7 +12,7 @@ See it on GitHub: [ActionRogueLike (github.com) ](https://github.com/Juwce/Actio
 
 This project implements and extends a variety of core gameplay systems in C++, including:
 
-| ****[**Networked multiplayer**](../../projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md)**** | **Debugging Tools** (asserts, logging, breakpoints)                                                                                                   | **Async asset loading & soft references** |
+| ****[**Networked Multiplayer**](../../projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/networked-multiplayer.md)**** | **Debugging Tools** (asserts, logging, breakpoints)                                                                                                   | **Async asset loading & soft references** |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | [**AI (Behavior Trees)**](../../projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/minion-ai-behavior-trees.md)****    | **Gameplay framework** (character, pawn, actor, game mode, player state, etc.)                                                                        | **Saving and loading player progression** |
 | **Event-driven**                                                                                                                                | ****[**Projectiles & Targeting**](../../projects/action-roguelike-c++-project-in-unreal/core-project-components-c++/projectiles-and-targeting.md)**** | **World Interaction**                     |
