@@ -72,7 +72,7 @@ FVector ProjectileTargetLocation = bBlockingHit ? Hit.Location : TraceEnd;
 
 ### Full Solution
 
-**See full solution on GitHub:** [TAction\_ProjectileAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/c4afbc5f4f7bc1ee51c63a9f97d8cbaa0c481b2b/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp#L53) // [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TAction\_ProjectileAttack.h)
+**See full solution on GitHub:** [TAction\_ProjectileAttack.cpp](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Private/TAction\_ProjectileAttack.cpp) // [TAction\_ProjectileAttack.h](https://github.com/Juwce/ActionRoguelike/blob/main/Source/ActionRoguelike/Public/TAction\_ProjectileAttack.h)
 
 ## Projectile Classes
 
