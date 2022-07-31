@@ -10,10 +10,10 @@ coverY: -46.33016265337739
 
 C++ classes and Unreal assets for this project's AI can be found on GitHub:
 
-* [AI Classes - github](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI) ([headers](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI))
+* [AI Classes - github.com](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Private/AI) ([headers](https://github.com/Juwce/ActionRoguelike/tree/main/Source/ActionRoguelike/Public/AI))
   * AI Character classes: `TAICharacter`, `TAIController`
   * Behavior Tree Node Classes: `TBTService_CheckAttackRange`, `TBTService_CheckHealth`, `TBTTask_HealSelf`, `TBTTask_RangeAttack`
-* [AI Assets - github](https://github.com/Juwce/ActionRoguelike/tree/main/Content/ActionRoguelike/AI)
+* [AI Assets - github.com](https://github.com/Juwce/ActionRoguelike/tree/main/Content/ActionRoguelike/AI)
 
 ### **Jump to Section...**
 
@@ -100,7 +100,7 @@ AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 **Sequence: Move Closer to Target Actor**
 
-If the target actor is not `WithinAttackRange` or the attack is on cooldown, the AI will run an [EQS](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/) query to find a random location on the navmesh nearby and with line of site to the target actor, and [move to](https://docs.unrealengine.com/4.26/en-US/BlueprintAPI/AI/Navigation/MovetoLocation/) that location. If there is no target actor set (a target has not been spotted by the AI yet), the AI "cheats" and picks Player 0 (first player to join the session) as its target instead.
+If the target actor is not `WithinAttackRange` or the attack is on cooldown, the AI will run an [Environmental Query System](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/EQS/) (EQS) query to find a random location on the navmesh nearby and with line of site to the target actor, and [move to](https://docs.unrealengine.com/4.26/en-US/BlueprintAPI/AI/Navigation/MovetoLocation/) that location. If there is no target actor set (a target has not been spotted by the AI yet), the AI "cheats" and picks Player 0 (first player to join the session) as its target instead.
 
 ## Behavior: Hide and Heal
 
