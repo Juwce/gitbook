@@ -116,7 +116,7 @@ Cosmetic:
 
 ### Dash Projectile
 
-![Left: Player uses dash ability three times. Right: Shows it from the perspective of another player (via networked multiplayer)](../../../.gitbook/assets/92463d2527cfe3d2acb9ca4a842edb2f.gif)
+![Left: Player uses dash ability three times. Right: Shows it from the perspective of another player (via networked multiplayer).](../../../.gitbook/assets/92463d2527cfe3d2acb9ca4a842edb2f.gif)
 
 Dash projectiles fly forward, exploding on impact or after a set duration expires, whichever comes first. Upon exploding, there is a short delay before the player is teleported to the explosion's impact point. They extend the projectile base class with the following functionality:
 
